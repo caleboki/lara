@@ -31,6 +31,10 @@ Route::get('test', function () {
     return 'Bar';
 });
 
+Route::get('home', function () {
+    return view('welcome');
+});
+/*
 Route::get('articles', 'ArticlesController@index');
 
 Route::get('articles/create', 'ArticlesController@create');
@@ -39,7 +43,30 @@ Route::get('articles/{id}', 'ArticlesController@show');
 
 Route::post('articles', 'ArticlesController@store');
 
+Route::get('articles/{id}/edit', 'ArticlesController@edit'); */
 
+Route::resource('articles', 'ArticlesController');
+
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+/*
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
+*/
+
+Route::get('foo', ['middleware'=> 'manager', function()
+{
+	return 'this page may only be viewed by managers';
+}
+]);
 
 
 
