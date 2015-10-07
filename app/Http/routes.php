@@ -27,9 +27,7 @@ Route::get('blade', function () {
     return view('child');
 });
 
-Route::get('test', function () {
-    return 'Bar';
-});
+Route::get('test', 'PagesController@test');
 
 Route::get('home', function () {
     return view('welcome');
