@@ -16,7 +16,7 @@ class Article extends Model
     	
     	'published_at',
 
-    	'user_id' // temporary!!
+    	//'user_id' // temporary!!
     ];
 
     protected $dates = ['published_at'];

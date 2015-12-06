@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', '2p4Yhv4WQI4ipbiBmHatHhuG6az6iW5x'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -144,6 +144,12 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+
+
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'Illuminate\Html\HtmlServiceProvider',
+        'Laravel\Cashier\CashierServiceProvider',
 
     ],
 
