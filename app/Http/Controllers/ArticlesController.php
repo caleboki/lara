@@ -16,11 +16,13 @@ use Illuminate\Http\Request;
 
 use Auth;
 
+use App\Tag;
+
 class ArticlesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => 'create']);
+        $this->middleware('auth', ['only' => 'create', 'only' => 'edit', 'only' => 'update']);
         $this->middleware('demo');
     }
     //
@@ -30,27 +32,20 @@ class ArticlesController extends Controller
         //return 'get all articles';
     	$articles = Article::latest('published_at')->published()->get();
 
+
     	//return $articles;
-    	return view('articles.index', compact('articles'));
+    	return view('articles.index', compact('articles', 'latest'));
     }
 
-    public function show($id)
+    public function show(Article $article)
     {
-    	//return $id;
-    	$article = Article::findOrfail($id);
-
-    	//dd($article->published_at);
-
-    	
-
-    	//dd($article);
-    	//return $article;
     	return view('articles.show', compact('article'));
     }
 
     public function create()
     {
-    	return view('articles.create');
+    	$tags = Tag::lists('name', 'id');
+        return view('articles.create', compact('tags'));
 
     }
 
@@ -60,23 +55,61 @@ class ArticlesController extends Controller
     	
 
     	//Article::create($request->all());
-        $article = new Article($request->all());
+        //$article = new Article($request->all());
 
-        Auth::user()->articles()->save($article);
+        $this->createArticle($request);
+
+        
+        
+
+        //$article->tags()->attach($request->input('tag_list'));
+
+        //Auth::user()->articles()->save($article);
+
+        /*
+
+        \Session::flash('flash_message', 'Your article has been created');
+        session()->flash('flash_message_important', true);
+
+        */
+       flash()->overlay('Your article has been successfully created!', 'Good Job')->important();
 
     	return redirect('articles');
     }
 
-    public function edit($id)
+    public function edit(Article $article)
     {
-    	$article = Article::findOrfail($id);
-    	return view('articles.edit', compact('article'));
+    	//$article = Article::findOrfail($id);
+        $tags = Tag::lists('name', 'id');
+    	return view('articles.edit', compact('article', 'tags'));
     }
 
-    public function update($id, ArticleRequest $request)
+    public function update(Article $article, ArticleRequest $request)
     {
-    	$article = Article::findOrfail($id);
+    	//$article = Article::findOrfail($id);
     	$article->update($request->all());
+
+        //$article->tags()->sync($request->input('tag_list'));
+
+        $this->syncTags($article, $request->input('tag_list'));
+
     	return redirect('articles');
     }
-}
+
+    private function syncTags(Article $article, array $tags) {
+
+        $article->tags()->sync($tags);
+    }
+
+    private function createArticle(ArticleRequest $request)
+    {
+
+        
+        $article = Auth::user()->articles()->create($request->all());
+        $this->syncTags($article, $request->input('tag_list'));
+        return $article;
+
+    }
+
+   
+    }

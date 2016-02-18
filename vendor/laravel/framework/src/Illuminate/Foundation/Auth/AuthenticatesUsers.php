@@ -48,6 +48,7 @@ trait AuthenticatesUsers
         $credentials = $this->getCredentials($request);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
+            flash()->success('You are now logged in'); //This line added by me
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
 

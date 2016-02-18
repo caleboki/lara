@@ -2,7 +2,7 @@
 	<h1>Write a New Article</h1>
 	
 	<hr/>
-	<?php echo Form::open(['url'=>'articles']); ?>
+	<?php echo Form::model($article = new \App\Article, ['url'=>'articles']); ?>
 
 		
 		<?php echo $__env->make('articles.form', ['submitButtonText' => 'Add Article'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

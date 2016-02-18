@@ -29,9 +29,13 @@ Route::get('blade', function () {
 
 Route::get('test', 'PagesController@test');
 
+Route::get('tags/{tags}', 'TagsController@show');
+
 Route::get('home', function () {
     return view('welcome');
 });
+
+//Route::get('articles/{article}/delete', 'ArticlesController@destroy');
 /*
 Route::get('articles', 'ArticlesController@index');
 
@@ -44,6 +48,8 @@ Route::post('articles', 'ArticlesController@store');
 Route::get('articles/{id}/edit', 'ArticlesController@edit'); */
 
 Route::resource('articles', 'ArticlesController');
+
+
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -65,6 +71,9 @@ Route::get('foo', ['middleware'=> 'manager', function()
 	return 'this page may only be viewed by managers';
 }
 ]);
+
+
+
 
 
 

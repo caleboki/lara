@@ -5,6 +5,23 @@
 		<?php echo e($article->body); ?>
 
 	</article>
+
+	<?php if ( ! ($article->tags->isEmpty())): ?>
+	<h5>Tags:</h5>
+	<ul>
+
+		<?php foreach($article->tags as $tag): ?>
+
+			<li><?php echo e($tag->name); ?> </li>
+
+		<?php endforeach; ?>
+
+
+	</ul>
+	<?php endif; ?>
+	
+	</div>
+	
 <?php $__env->stopSection(); ?>
 
 

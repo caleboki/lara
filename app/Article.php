@@ -41,4 +41,23 @@ class Article extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+    public function tags ()
+
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps();
+    }
+
+    //Get a list of tag Ids associated with the current article
+    //@returns array
+    public function getTagListAttribute()
+    {
+        return $this->tags->lists('id')->all();
+
+    }
+
+    public function getPublishedAtAttribute($date)
+    {
+        return Carbon::parse($date)->format('Y-m-d');
+    }
 }

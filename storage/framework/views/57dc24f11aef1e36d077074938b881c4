@@ -4,14 +4,36 @@
     <head>
         <meta charset="UFT-8">
         <title>Lara.dev </title>
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+       
+        <link rel="stylesheet" type="text/css" href="<?php echo e(elixir('css/all.css')); ?>">
+
+         
+
+        
     </head>
-    <body>       
+    <body>
+
+        <?php echo $__env->make('partials.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
         <div class="container">
+
+            <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                
             <?php echo $__env->yieldContent('content'); ?>
         </div>
 
+        <script src="//code.jquery.com/jquery.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <script>
+            $('#flash-overlay-modal').modal();
+            //$('div.alert').not('.alert-important').delay(3000).slideUp(300);
+        </script>
+
+        
+        <script src="/js/all.js"></script>
+        
+       
         <?php echo $__env->yieldContent('footer'); ?>
     </body>
 </html>

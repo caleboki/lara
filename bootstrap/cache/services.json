@@ -27,6 +27,8 @@
         "App\\Providers\\AppServiceProvider",
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
+        "App\\Providers\\ViewComposerServiceProvider",
+        "Laracasts\\Flash\\FlashServiceProvider",
         "Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider",
         "Illuminate\\Html\\HtmlServiceProvider",
         "Laravel\\Cashier\\CashierServiceProvider"
@@ -46,6 +48,8 @@
         "App\\Providers\\AppServiceProvider",
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
+        "App\\Providers\\ViewComposerServiceProvider",
+        "Laracasts\\Flash\\FlashServiceProvider",
         "Laravel\\Cashier\\CashierServiceProvider"
     ],
     "deferred": {
