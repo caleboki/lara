@@ -20,8 +20,23 @@
 
 	</ul>
 	@endunless
+	@if (Auth::check())
+	<br>
+			
+    <div class="col-md-16 col-md-offset-4">
+    
+    {!! Form::open(['method' => 'DELETE', 'route'=> ['articles.destroy', $article->id]]) !!}
+    <a href={{ url('articles/'.$article->id, ['edit']) }}>Edit Article</a>
+    {!! Form::submit ('Delete Article', ['class' => 'btn btn-danger']) !!}
+    {!! Form::close() !!}
+
+                                
+    </div>
+    @endif
+                        
+		
 	
-	</div>
+	
 	
 @stop
 

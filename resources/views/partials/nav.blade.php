@@ -15,9 +15,25 @@
             <li><a href="/articles">Articles</a></li>
             
           </ul>
+          
+          @if (Auth::check())
+          
+            <ul class="nav navbar-nav">
+              <li><a href="/articles/create">New Article</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right ">
+              <li><a href="/auth/logout">Logout</a></li>
+            </ul>
+            @else
+            <ul class="nav navbar-nav navbar-right ">
+              <li><a href="/auth/login">Login</a></li>
+              <li><a href="/auth/register">Register</a></li>
+            </ul>
+          
+          @endif
 
-          <ul class="nav navbar-nav navbar-right ">
-            <li>{!! link_to_action('ArticlesController@show',$latest->title, [$latest->id]) !!}</li>
+
+          
             
           </ul>
         </div>

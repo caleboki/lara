@@ -19,8 +19,26 @@
 
 	</ul>
 	<?php endif; ?>
+	<?php if(Auth::check()): ?>
+	<br>
+			
+    <div class="col-md-16 col-md-offset-4">
+    
+    <?php echo Form::open(['method' => 'DELETE', 'route'=> ['articles.destroy', $article->id]]); ?>
+
+    <a href=<?php echo e(url('articles/'.$article->id, ['edit'])); ?>>Edit Article</a>
+    <?php echo Form::submit ('Delete Article', ['class' => 'btn btn-danger']); ?>
+
+    <?php echo Form::close(); ?>
+
+
+                                
+    </div>
+    <?php endif; ?>
+                        
+		
 	
-	</div>
+	
 	
 <?php $__env->stopSection(); ?>
 

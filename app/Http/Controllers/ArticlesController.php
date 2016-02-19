@@ -22,7 +22,7 @@ class ArticlesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => 'create', 'only' => 'edit', 'only' => 'update']);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('demo');
     }
     //
@@ -109,6 +109,14 @@ class ArticlesController extends Controller
         $this->syncTags($article, $request->input('tag_list'));
         return $article;
 
+    }
+
+    public function destroy($article)
+    {
+        $article->tags()->detach();
+        $article->delete();
+        flash()->overlay('The Article has been deleted', 'Deleted')->important();
+        return redirect('articles');
     }
 
    
