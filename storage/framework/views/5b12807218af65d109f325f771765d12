@@ -19,7 +19,7 @@
 		<div class="form-group">
 			<?php echo Form::label('published_at', 'Publish On'); ?>
 
-			<?php echo Form::input('datetime', 'published_at', $article->published_at, ['class' =>'form-control']); ?>
+			<?php echo Form::input('date', 'published_at', $article->published_at, ['class' =>'form-control']); ?>
 
 		</div>
 
