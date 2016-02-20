@@ -18,7 +18,7 @@ class Article extends Model
 
     	//'user_id' // temporary!!
     ];
-
+    //passes published_at as a carbon instance for use in the view
     protected $dates = ['published_at'];
 
     public function scopePublished($query)
@@ -30,7 +30,7 @@ class Article extends Model
     {
     	$query->where('published_at', '>', Carbon::now());
     }
-
+    //ensures a carbon instance is saved to db
     public function setPublishedAtAttribute($date)
     {
     	$this->attributes['published_at'] = Carbon::parse($date);
@@ -59,5 +59,5 @@ class Article extends Model
     public function getPublishedAtAttribute($date)
     {
         return Carbon::parse($date)->format('Y-m-d');
-    }
+    } 
 }

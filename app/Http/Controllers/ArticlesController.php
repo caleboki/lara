@@ -38,8 +38,10 @@ class ArticlesController extends Controller
     }
 
     public function show(Article $article)
+
     {
-    	return view('articles.show', compact('article'));
+    	
+        return view('articles.show', compact('article'));
     }
 
     public function create()
