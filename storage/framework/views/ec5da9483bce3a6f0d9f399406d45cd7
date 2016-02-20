@@ -12,7 +12,8 @@
 
 		<?php foreach($article->tags as $tag): ?>
 
-			<li><?php echo e($tag->name); ?> </li>
+	
+			<a href=<?php echo e(url('tags/'.$tag->name)); ?>><?php echo e($tag->name); ?></a>
 
 		<?php endforeach; ?>
 

@@ -13,7 +13,8 @@
 
 		@foreach ($article->tags as $tag)
 
-			<li>{{ $tag->name }} </li>
+	
+			<a href={{ url('tags/'.$tag->name) }}>{{ $tag->name }}</a>
 
 		@endforeach
 
